@@ -1,0 +1,340 @@
+* {
+  font-family: "Noto Sans KR", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+body {
+  background-color: #F8F6FF;
+}
+
+section {
+  padding: 16px;
+  margin-bottom: 10px;
+}
+
+section h2 {
+  margin: 10px 10px 20px 5px;
+}
+
+p {
+  font-size: 14px;
+  color: #626262;
+}
+
+li {
+  list-style: none;
+}
+
+/* 헤더 */
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  padding: 14px 24px;
+  margin-bottom: 10px;
+  background-color: #FFFFFF;
+  z-index: 10;
+}
+
+.profile-wrapper {
+  display: flex;
+  justify-content: flex-start;
+  flex: 1;
+}
+
+.profile-wrapper__img {
+  width: 60px;
+  height: 60px;
+  border-radius: 30px;
+}
+
+.title-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  line-height: 30px;
+}
+
+.social-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  flex: 1;
+  gap: 10px;
+}
+
+.social-wrapper__a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+  background-color: #B8D7DA;
+}
+
+.social-wrapper__a__img {
+  width: 20px;
+  height: 20px;
+}
+
+.social-wrapper__a:nth-child(2) .social-wrapper__a__img {
+  width: 16px;
+  height: 16px;
+}
+
+main {
+  display: flex;
+}
+
+/* 네비게이션 */
+
+.content-wrapper {
+  float: left;
+  position: sticky;
+  top: 110px;
+  width: 14%;
+  height: fit-content;
+  padding: 16px;
+  background-color: #F8F6FF;
+  z-index: 5;
+}
+
+.content-wrapper__ul {
+  padding: 2%;
+  border-radius: 12px;
+  background-color: #FFFFFF;
+}
+
+.content-wrapper__ul__a {
+  display: flex;
+  align-items: center;
+  max-width: 120px;
+  min-height: 30px;
+  padding: 4px 16px;
+  margin: 10px;
+  color: #626262;
+  text-decoration: none;
+}
+
+.content-wrapper__ul__a:hover {
+  border-radius: 16px;
+  background-color: #D3EAE9;
+  color: #000000;
+}
+
+.top:hover {
+  border-radius: 16px 16px 6px 6px;
+}
+
+.bottom:hover {
+  border-radius: 6px 6px 16px 16px;
+}
+
+.section-wrapper {
+  width: 84%;
+}
+
+.anchor {
+  display: block;
+  height: 108px;
+  margin-top: -108px;
+  visibility: hidden;
+}
+
+/* 히어로 섹션 */
+
+.hero-section {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  height: 280px;
+  margin-top: -20px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  background-color: #E4F6F6;
+}
+
+.hero-section__img-wrapper img {
+  width: 200px;
+  height: 200px;
+  margin: 40px;
+  border-radius: 100px;
+  transition-duration: 0.3s;
+}
+
+.hero-section__img-wrapper img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 20px #CFCFCF;
+}
+
+.hero-section__description-wrapper h2, p {
+  margin-left: 0;
+  margin-bottom: 10px;
+}
+
+.hero-section__description-wrapper__button-wrapper button {
+  width: 82px;
+  height: 34px;
+  margin-top: 10px;
+  margin-right: 10px;
+  border: none;
+  border-radius: 16px;
+  font-size: 14px;
+  transition-duration: 0.3s;
+}
+
+.hero-section__description-wrapper__button-wrapper button:first-child {
+  background: #B0D2D5;
+}
+
+.hero-section__description-wrapper__button-wrapper button:last-child {
+  background: #F4BDD3;
+}
+
+.hero-section__description-wrapper__button-wrapper button:hover {
+  transform: translateY(-5px) scale(1.05);
+}
+
+/* 스킬 태그 섹션 */
+
+.skill-section__chip {
+  display: inline-block;
+  padding: 10px 18px;
+  margin: 5px 5px 10px 5px;
+  border-radius: 26px;
+  background-color: #FCE2CF;
+  font-size: 14px;
+  color: #626262;
+}
+
+/* 카드 섹션 */
+
+.card-section__card-wrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.card-section__card-wrapper__card:hover {
+  border-radius: 26px;
+  box-shadow: 0 10px 20px #cfcfcf;
+  transform: translateY(-5px);
+  transition-duration: 0.3s;
+}
+
+.card-section__card-wrapper__card__img-wrapper {
+  max-width: 230px;
+  max-height: 160px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  overflow: hidden;
+}
+
+.card-section__card-wrapper__card__img-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.card-section__card-wrapper__card__content-wrapper {
+  box-sizing: border-box;
+  width: 230px;
+  height: 160px;
+  padding: 14px;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  background-color: #FFFFFF;
+}
+
+.card-section__card-wrapper__card__content-wrapper div:first-child {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.card-section__card-wrapper__card__content-wrapper div:first-child p {
+  font-size: 16px;
+  font-weight: 500;
+  color: #000000;
+}
+
+.card-section__card-wrapper__card__content-wrapper div:first-child button {
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: 18px;
+  background-color: #F6C6D8;
+  color: #E15189;
+}
+
+.card-section__card-wrapper__card__content-wrapper div:first-child button:hover {
+  background-color: #FEDFEB;
+  color: #FF4466;
+}
+
+/* 사진첩 섹션 */
+
+.album-section h2 {
+  margin: 10px 10px 20px 5px;
+}
+
+.album-section__album-wrapper {
+  display: flex;
+  height: 230px;
+  padding: 14px;
+  border-radius: 12px;
+  gap: 14px;
+  overflow: hidden;
+  background-color: #FFFFFF;
+  > * {
+    flex: 0 0 100%;
+  }
+}
+
+.album-section__album-wrapper:hover .album-section__album-wrapper__group {
+  animation-play-state: paused;
+}
+
+.album-section__album-wrapper__group {
+  display: flex;
+  gap: 20px;
+  padding-right: 8px;
+  will-change: transform;
+  animation: scrolling 26s linear infinite;
+}
+
+.album-section__album-wrapper__group img {
+  max-width: 300px;
+  max-height: 200px;
+  border-radius: 12px;
+}
+
+.album-section__album-wrapper__group img:hover {
+  transform: scale(1.03);
+  transition-duration: 0.3s;
+}
+
+@keyframes scrolling {
+  0% { transform: translateX(0) }
+  100% { transform: translateX(-100%) }
+}
+
+/* 푸터 */
+
+footer {
+  padding: 16px;
+  text-align: center;
+  background: #D8C4E8;
+}
+
+footer p {
+  margin-bottom: 0;
+}

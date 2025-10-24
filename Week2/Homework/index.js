@@ -124,6 +124,8 @@ checkArray.forEach((check) => check.addEventListener('click', (e) => selectOne(e
 const deleteButton = document.querySelector('.delete-button');
 
 function deleteRow() {
+  const checkArray = document.querySelectorAll('.td__checkbox');
+
   const originalData = JSON.parse(localStorage.getItem('membersData'));
   const filteredData = originalData.filter((_, idx) => !checkArray[idx].checked);
 

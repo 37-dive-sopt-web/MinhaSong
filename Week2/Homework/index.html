@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="reset.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap">
+  <title>웹계인 관리 페이지</title>
+</head>
+<body>
+  <header>
+    <h2>👽</h2>
+    <h2>웹계인 관리 페이지</h2>
+    <p>🛸DIVE SOPT 37기 웹파트 송민하🛸</p>
+  </header>
+  <main>
+    <section class="search-section">
+      <h3>검색 필터</h3>
+      <form class="search-section__form">
+        <div class="row">
+          <label for="name">이름</label><input type="text" id="name" name="user_name" placeholder="이름을 입력하세요" />
+        </div>
+        <div class="row">
+          <label for="english_name">영문 이름</label><input type="text" id="english_name" name="user_english_name" placeholder="영문 이름을 입력하세요" />
+        </div>
+        <div class="row">
+          <label for="github">깃허브</label><input type="text" id="github" name="user_github" placeholder="깃허브 아이디를 입력하세요" />
+        </div>
+        <div class="row">
+          <label for="gender">성별</label>
+          <select id="gender" name="user_gender">
+            <option value="">전체</option>
+            <option value="여자">여자</option>
+            <option value="남자">남자</option>
+          </select>
+        </div>
+        <div class="row">
+          <label for="role">역할</label>
+          <select id="role" name="user_role">
+            <option value="">전체</option>
+            <option value="OB">OB</option>
+            <option value="YB">YB</option>
+          </select>
+        </div>
+        <div class="row">
+          <label for="code_review_group">금잔디조</label><input type="number" id="code_review_group" name="user_code_review_group" min="1" max="9" placeholder="금잔디조를 입력하세요 (1~9)" />
+        </div>
+        <div class="row">
+          <label for="age">나이</label><input type="number" id="age" name="user_age" min="20" placeholder="나이를 입력하세요" />
+        </div>
+        <button type="button" class="apply-button">적용</button>
+        <button type="button" class="reset-button">초기화</button>
+      </form>
+    </section>
+    <section class="result-section">
+      <div class="result-section__header">
+        <h3>37기 웹 파트 목록</h3>
+        <div class="button-wrapper">
+          <button type="button" class="delete-button button--short">선택삭제</button>
+          <button type="button" class="open-button button--short">추가</button>
+        </div>
+      </div>
+      <div class="result-section__div">
+        <table class="result-section__table">
+          <colgroup>
+            <col class="checkbox" />
+            <col class="name" />
+            <col class="english_name" />
+            <col class="github" />
+            <col class="gender" />
+            <col class="role" />
+            <col class="code_review_group" />
+            <col class="age" />
+          </colgroup>
+          <thead>
+            <tr>
+              <th>
+                <input type="checkbox" name="checkbox" class="th__checkbox" />
+              </th>
+              <th>이름</th>
+              <th>영문 이름</th>
+              <th>깃허브</th>
+              <th>성별</th>
+              <th>역할</th>
+              <th>금잔디조</th>
+              <th>나이</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+    <div class="modal-section--overlay">
+      <section class="modal-section">
+        <div class="modal-section__header">
+          <h3>멤버 추가</h3>
+          <button type="button" class="close-button">
+            <img src="images/close.png" alt="닫기 버튼" />
+          </button>
+        </div>
+        <form class="modal-section__form">
+          <div class="row">
+            <label for="name">이름</label><input type="text" id="name" name="user_name" placeholder="이름을 입력하세요" />
+          </div>
+          <div class="row">
+            <label for="english_name">영문 이름</label><input type="text" id="english_name" name="user_english_name" placeholder="영문 이름을 입력하세요" />
+          </div>
+          <div class="row">
+            <label for="github">깃허브</label><input type="text" id="github" name="user_github" placeholder="깃허브 아이디를 입력하세요" />
+          </div>
+          <div class="row">
+            <label for="gender">성별</label>
+            <select id="gender" name="user_gender">
+              <option value="">전체</option>
+              <option value="여자">여자</option>
+              <option value="남자">남자</option>
+            </select>
+          </div>
+          <div class="row">
+            <label for="role">역할</label>
+            <select id="role" name="user_role">
+              <option value="">전체</option>
+              <option value="OB">OB</option>
+              <option value="YB">YB</option>
+            </select>
+          </div>
+          <div class="row">
+            <label for="code_review_group">금잔디조</label><input type="number" id="code_review_group" name="user_code_review_group" min="1" max="9" placeholder="금잔디조를 입력하세요 (1~9)" />
+          </div>
+          <div class="row">
+            <label for="age">나이</label><input type="number" id="age" name="user_age" min="20" placeholder="나이를 입력하세요" />
+          </div>
+          <button type="button" class="add-button">추가</button>
+        </form>
+      </section>
+    </div>
+  </main>
+  <script type="module" src="index.js"></script>
+</body>
+</html>

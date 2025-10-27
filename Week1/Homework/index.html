@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="reset.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
+  <link rel="icon" href="images/favicon.png">
+  <title>송민하 자기소개 페이지</title>
+</head>
+<body>
+  <header>
+    <div class="profile-wrapper">
+      <img src="images/profile.jpg" alt="헤더 프로필" class="profile-wrapper__img" />
+    </div>
+    <div class="title-wrapper">
+      <h2>송민하</h2>
+      <p>저를 소개합니다🌞</p>
+    </div>
+    <div class="social-wrapper">
+      <a href="https://github.com/sminha" class="social-wrapper__a" target="_blank">
+        <img src="images/github.png" alt="깃허브" class="social-wrapper__a__img" />
+      </a>
+      <a href="https://www.linkedin.com/in/%EB%AF%BC%ED%95%98-%EC%86%A1-57793728a/" class="social-wrapper__a" target="_blank">
+        <img src="images/linkedin.png" alt="링크드인" class="social-wrapper__a__img" />
+      </a>
+      <a href="https://ihnim.tistory.com/" class="social-wrapper__a" target="_blank">
+        <img src="images/tistory.svg" alt="티스토리" class="social-wrapper__a__img" />
+      </a>
+    </div>
+  </header>
+
+  <main>
+    <nav class="content-wrapper">
+      <ul class="content-wrapper__ul">
+        <li>
+          <a href="#hero-section" class="content-wrapper__ul__a a--top">소개</a>
+        </li>
+        <li>
+          <a href="#skill-section" class="content-wrapper__ul__a">나의 스킬</a>
+        </li>
+        <li>
+          <a href="#card-section" class="content-wrapper__ul__a">나의 모습</a>
+        </li>
+        <li>
+          <a href="#album-section" class="content-wrapper__ul__a">사진첩</a>
+        </li>
+        <li>
+          <a href="#" class="content-wrapper__ul__a a--bottom">한마디</a>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="section-wrapper">
+      <section class="hero-section" id="hero-section">
+        <div class="hero-section__img-wrapper">
+          <img src="images/profile.jpg" alt="히어로 프로필" />
+        </div>
+        <div class="hero-section__description-wrapper">
+          <h2>37기 다이브 솝트 웹파트 송민하입니다.</h2>
+          <p>한 학기 동안 함께 많이 성장해요. 앞으로 잘 부탁드립니다!</p>
+          <div class="hero-section__description-wrapper__button-wrapper">
+            <button type="button">좋아요</button>
+            <button type="button">싫어요</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="skill-section" id="skill-section">
+        <h2>나의 스킬과 관심사</h2>
+        <div>
+          <div class="skill-section__chip">HTML/CSS</div>
+          <div class="skill-section__chip">TypeScript</div>
+          <div class="skill-section__chip">React</div>
+          <div class="skill-section__chip">건강한 생활</div>
+          <div class="skill-section__chip">무조건 7시간 이상 숙면</div>
+          <div class="skill-section__chip">일본 요리 만화책 좋아해요</div>
+          <div class="skill-section__chip">혼자 시간 보내고 여행하는 거 좋아해요</div>
+          <div class="skill-section__chip">옛것을 좋아해요</div>
+          <div class="skill-section__chip">빈티지샵 쇼핑</div>
+          <div class="skill-section__chip">90~00년대 음악</div>
+          <div class="skill-section__chip">카세트 플레이어로 음악 듣기</div>
+          <div class="skill-section__chip">아이팟터치 5세대로 사진 찍기</div>
+        </div>
+      </section>
+      
+      <section class="card-section" id="card-section">
+        <h2>나의 모습</h2>
+        <div class="card-section__card-wrapper">
+          <div class="card-section__card-wrapper__card">
+            <div class="card-section__card-wrapper__card__img-wrapper">
+              <img src="images/first-card.jpg" alt="어렸을 때" />
+            </div>
+            <div class="card-section__card-wrapper__card__content-wrapper">
+              <div>
+                <p>어렸을 때</p>
+                <button type="button">♥</button>
+              </div>
+              <div>
+                <p>가족들이랑 밀 축제 놀러갔을 때 모습이에요.</p>
+              </div>
+            </div>
+          </div>
+          <div class="card-section__card-wrapper__card">
+            <div class="card-section__card-wrapper__card__img-wrapper">
+              <img src="images/second-card.jpg" alt="제주도 여행" />
+            </div>
+            <div class="card-section__card-wrapper__card__content-wrapper">
+              <div>
+                <p>제주도 여행</p>
+                <button type="button">♥</button>
+              </div>
+              <div>
+                <p>첫번째 혼자 여행으로 4박 5일 제주도를 다녀왔어요.</p>
+              </div>
+            </div>
+          </div>
+          <div class="card-section__card-wrapper__card">
+            <div class="card-section__card-wrapper__card__img-wrapper">
+              <img src="images/third-card.jpg" alt="홋카이도 여행" />
+            </div>
+            <div class="card-section__card-wrapper__card__content-wrapper">
+              <div>
+                <p>홋카이도 여행</p>
+                <button type="button">♥</button>
+              </div>
+              <div>
+                <p>두번째 혼자 여행으로 14박 15일 홋카이도를 다녀왔어요. 인생에서 가장 행복했던 15일이었어요.</p>
+              </div>
+            </div>
+          </div>
+          <div class="card-section__card-wrapper__card">
+            <div class="card-section__card-wrapper__card__img-wrapper">
+              <img src="images/fourth-card.jpg" alt="주황 머리" />
+            </div>
+            <div class="card-section__card-wrapper__card__content-wrapper">
+              <div>
+                <p>주황 머리👩🏻‍🦰</p>
+                <button type="button">♥</button>
+              </div>
+              <div>
+                <p>무슨 바람이 들었는지 주황 머리를 했던 시절이 있습니다. 딱 한 달 하고 덮었어요.</p>
+              </div>
+            </div>
+          </div>
+          <div class="card-section__card-wrapper__card">
+            <div class="card-section__card-wrapper__card__img-wrapper">
+              <img src="images/fifth-card.jpg" alt="장기하 콘서트" />
+            </div>
+            <div class="card-section__card-wrapper__card__content-wrapper">
+              <div>
+                <p>장기하 소극장 콘서트</p>
+                <button type="button">♥</button>
+              </div>
+              <div>
+                <p>노란색이 저에요! 장기하 인스타에 박제됐어요✌🏻</p>
+              </div>
+            </div>
+          </div>
+          <div class="card-section__card-wrapper__card">
+            <div class="card-section__card-wrapper__card__img-wrapper">
+              <img src="images/sixth-card.jpg" alt="부산 여행" />
+            </div>
+            <div class="card-section__card-wrapper__card__content-wrapper">
+              <div>
+                <p>부산 여행</p>
+                <button type="button">♥</button>
+              </div>
+              <div>
+                <p>최근에는 부산 여행을 다녀왔어요. 교정 일주일차였어서 아무것도 먹지 못 했답니다..</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="album-section" id="album-section">
+        <h2>사진첩</h2>
+        <div class="album-section__album-wrapper">
+          <div class="album-section__album-wrapper__group">
+            <img src="images/first-card.jpg" alt="어렸을 때" />
+            <img src="images/second-card.jpg" alt="제주도 여행" />
+            <img src="images/third-card.jpg" alt="홋카이도 여행" />
+            <img src="images/fourth-card.jpg" alt="주황 머리" />
+            <img src="images/fifth-card.jpg" alt="장기하 콘서트" />
+            <img src="images/sixth-card.jpg" alt="부산 여행" />
+          </div>
+          <div aria-hidden class="album-section__album-wrapper__group">
+            <img src="images/first-card.jpg" alt="어렸을 때" />
+            <img src="images/second-card.jpg" alt="제주도 여행" />
+            <img src="images/third-card.jpg" alt="홋카이도 여행" />
+            <img src="images/fourth-card.jpg" alt="주황 머리" />
+            <img src="images/fifth-card.jpg" alt="장기하 콘서트" />
+            <img src="images/sixth-card.jpg" alt="부산 여행" />
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <p>읽어주셔서 감사합니다.</p>
+  </footer>
+</body>
+</html>

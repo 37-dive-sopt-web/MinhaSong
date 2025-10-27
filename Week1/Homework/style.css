@@ -2,6 +2,7 @@
   font-family: "Noto Sans KR", sans-serif;
   font-optical-sizing: auto;
   font-style: normal;
+  scroll-behavior: smooth;
 }
 
 body {
@@ -10,7 +11,7 @@ body {
 
 section {
   padding: 16px;
-  margin-bottom: 10px;
+  scroll-margin-top: 100px;
 }
 
 section h2 {
@@ -18,12 +19,16 @@ section h2 {
 }
 
 p {
-  font-size: 14px;
+  font-size: 0.875rem;
   color: #626262;
 }
 
 li {
   list-style: none;
+}
+
+button {
+  cursor: pointer;
 }
 
 /* 헤더 */
@@ -32,10 +37,10 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  position: sticky;
+  position: fixed;
   top: 0;
+  width: 100%;
   padding: 14px 24px;
-  margin-bottom: 10px;
   background-color: #FFFFFF;
   z-index: 10;
 }
@@ -49,7 +54,7 @@ header {
 .profile-wrapper__img {
   width: 60px;
   height: 60px;
-  border-radius: 30px;
+  border-radius: 50%;
 }
 
 .title-wrapper {
@@ -74,8 +79,13 @@ header {
   align-items: center;
   width: 40px;
   height: 40px;
-  border-radius: 20px;
+  border-radius: 50%;
   background-color: #B8D7DA;
+  opacity: 0.8;
+}
+
+.social-wrapper__a:hover {
+  opacity: 1;
 }
 
 .social-wrapper__a__img {
@@ -95,10 +105,9 @@ main {
 /* 네비게이션 */
 
 .content-wrapper {
-  float: left;
   position: sticky;
   top: 110px;
-  width: 14%;
+  width: fit-content;
   height: fit-content;
   padding: 16px;
   background-color: #F8F6FF;
@@ -106,7 +115,10 @@ main {
 }
 
 .content-wrapper__ul {
-  padding: 2%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 20px;
   border-radius: 12px;
   background-color: #FFFFFF;
 }
@@ -114,10 +126,11 @@ main {
 .content-wrapper__ul__a {
   display: flex;
   align-items: center;
+  justify-content: center;
+  text-align: center;
   max-width: 120px;
   min-height: 30px;
-  padding: 4px 16px;
-  margin: 10px;
+  padding: 4px 26px;
   color: #626262;
   text-decoration: none;
 }
@@ -128,23 +141,28 @@ main {
   color: #000000;
 }
 
-.top:hover {
+@media (max-width: 1340px) {
+  .content-wrapper {
+    width: 100px;
+  }
+  .content-wrapper__ul__a {
+    padding: 4px 8px;
+  }
+}
+
+.a--top:hover {
   border-radius: 16px 16px 6px 6px;
 }
 
-.bottom:hover {
+.a--bottom:hover {
   border-radius: 6px 6px 16px 16px;
 }
 
 .section-wrapper {
-  width: 84%;
-}
-
-.anchor {
-  display: block;
-  height: 108px;
-  margin-top: -108px;
-  visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 86%;
 }
 
 /* 히어로 섹션 */
@@ -153,19 +171,18 @@ main {
   display: flex;
   flex-direction: row;
   align-items: center;
+  gap: 40px;
   width: 100%;
   height: 280px;
-  margin-top: -20px;
-  margin-bottom: 10px;
+  padding: 40px;
+  margin-top: 80px;
   border-radius: 10px;
   background-color: #E4F6F6;
 }
 
 .hero-section__img-wrapper img {
   width: 200px;
-  height: 200px;
-  margin: 40px;
-  border-radius: 100px;
+  border-radius: 50%;
   transition-duration: 0.3s;
 }
 
@@ -174,19 +191,29 @@ main {
   box-shadow: 0 10px 20px #CFCFCF;
 }
 
-.hero-section__description-wrapper h2, p {
-  margin-left: 0;
-  margin-bottom: 10px;
+.hero-section__description-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.hero-section__description-wrapper h2, 
+.hero-section__description-wrapper p {
+  margin: 0;
+}
+
+.hero-section__description-wrapper__button-wrapper {
+  display: flex;
+  gap: 10px;
 }
 
 .hero-section__description-wrapper__button-wrapper button {
   width: 82px;
   height: 34px;
   margin-top: 10px;
-  margin-right: 10px;
   border: none;
   border-radius: 16px;
-  font-size: 14px;
+  font-size: 0.875rem;
   transition-duration: 0.3s;
 }
 
@@ -210,7 +237,7 @@ main {
   margin: 5px 5px 10px 5px;
   border-radius: 26px;
   background-color: #FCE2CF;
-  font-size: 14px;
+  font-size: 0.875rem;
   color: #626262;
 }
 
@@ -261,7 +288,7 @@ main {
 }
 
 .card-section__card-wrapper__card__content-wrapper div:first-child p {
-  font-size: 16px;
+  font-size: 1rem;
   font-weight: 500;
   color: #000000;
 }
@@ -270,7 +297,7 @@ main {
   width: 36px;
   height: 36px;
   border: none;
-  border-radius: 18px;
+  border-radius: 50%;
   background-color: #F6C6D8;
   color: #E15189;
 }
@@ -278,6 +305,30 @@ main {
 .card-section__card-wrapper__card__content-wrapper div:first-child button:hover {
   background-color: #FEDFEB;
   color: #FF4466;
+}
+
+@media (max-width: 900px) {
+  .card-section__card-wrapper__card {
+    width: 30%;
+  }
+
+  .card-section__card-wrapper__card__content-wrapper {
+    width: 100%;
+  }
+}
+
+@media (max-width: 700px) {
+  .card-section__card-wrapper__card__content-wrapper {
+    width: 100%;
+    height: 62%;
+  }
+}
+
+@media (max-width: 600px) {
+  .card-section__card-wrapper__card__content-wrapper {
+    width: 100%;
+    height: 70%;
+  }
 }
 
 /* 사진첩 섹션 */

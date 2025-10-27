@@ -2,6 +2,7 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="reset.css">
   <link rel="stylesheet" href="style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -20,13 +21,13 @@
       <p>저를 소개합니다🌞</p>
     </div>
     <div class="social-wrapper">
-      <a href="https://github.com/sminha" class="social-wrapper__a">
+      <a href="https://github.com/sminha" class="social-wrapper__a" target="_blank">
         <img src="images/github.png" alt="깃허브" class="social-wrapper__a__img" />
       </a>
-      <a href="https://www.linkedin.com/in/%EB%AF%BC%ED%95%98-%EC%86%A1-57793728a/" class="social-wrapper__a">
+      <a href="https://www.linkedin.com/in/%EB%AF%BC%ED%95%98-%EC%86%A1-57793728a/" class="social-wrapper__a" target="_blank">
         <img src="images/linkedin.png" alt="링크드인" class="social-wrapper__a__img" />
       </a>
-      <a href="https://ihnim.tistory.com/" class="social-wrapper__a">
+      <a href="https://ihnim.tistory.com/" class="social-wrapper__a" target="_blank">
         <img src="images/tistory.svg" alt="티스토리" class="social-wrapper__a__img" />
       </a>
     </div>
@@ -36,7 +37,7 @@
     <nav class="content-wrapper">
       <ul class="content-wrapper__ul">
         <li>
-          <a href="#hero-section" class="content-wrapper__ul__a top">소개</a>
+          <a href="#hero-section" class="content-wrapper__ul__a a--top">소개</a>
         </li>
         <li>
           <a href="#skill-section" class="content-wrapper__ul__a">나의 스킬</a>
@@ -48,14 +49,13 @@
           <a href="#album-section" class="content-wrapper__ul__a">사진첩</a>
         </li>
         <li>
-          <a href="#" class="content-wrapper__ul__a bottom">한마디</a>
+          <a href="#" class="content-wrapper__ul__a a--bottom">한마디</a>
         </li>
       </ul>
     </nav>
 
     <div class="section-wrapper">
-      <span class="anchor" id="hero-section"></span>
-      <section class="hero-section">
+      <section class="hero-section" id="hero-section">
         <div class="hero-section__img-wrapper">
           <img src="images/profile.jpg" alt="히어로 프로필" />
         </div>
@@ -63,14 +63,13 @@
           <h2>37기 다이브 솝트 웹파트 송민하입니다.</h2>
           <p>한 학기 동안 함께 많이 성장해요. 앞으로 잘 부탁드립니다!</p>
           <div class="hero-section__description-wrapper__button-wrapper">
-            <button>좋아요</button>
-            <button>싫어요</button>
+            <button type="button">좋아요</button>
+            <button type="button">싫어요</button>
           </div>
         </div>
       </section>
 
-      <span class="anchor" id="skill-section"></span>
-      <section class="skill-section">
+      <section class="skill-section" id="skill-section">
         <h2>나의 스킬과 관심사</h2>
         <div>
           <div class="skill-section__chip">HTML/CSS</div>
@@ -88,8 +87,7 @@
         </div>
       </section>
       
-      <span class="anchor" id="card-section"></span>
-      <section class="card-section">
+      <section class="card-section" id="card-section">
         <h2>나의 모습</h2>
         <div class="card-section__card-wrapper">
           <div class="card-section__card-wrapper__card">
@@ -99,7 +97,7 @@
             <div class="card-section__card-wrapper__card__content-wrapper">
               <div>
                 <p>어렸을 때</p>
-                <button>♥</button>
+                <button type="button">♥</button>
               </div>
               <div>
                 <p>가족들이랑 밀 축제 놀러갔을 때 모습이에요.</p>
@@ -113,7 +111,7 @@
             <div class="card-section__card-wrapper__card__content-wrapper">
               <div>
                 <p>제주도 여행</p>
-                <button>♥</button>
+                <button type="button">♥</button>
               </div>
               <div>
                 <p>첫번째 혼자 여행으로 4박 5일 제주도를 다녀왔어요.</p>
@@ -127,7 +125,7 @@
             <div class="card-section__card-wrapper__card__content-wrapper">
               <div>
                 <p>홋카이도 여행</p>
-                <button>♥</button>
+                <button type="button">♥</button>
               </div>
               <div>
                 <p>두번째 혼자 여행으로 14박 15일 홋카이도를 다녀왔어요. 인생에서 가장 행복했던 15일이었어요.</p>
@@ -141,7 +139,7 @@
             <div class="card-section__card-wrapper__card__content-wrapper">
               <div>
                 <p>주황 머리👩🏻‍🦰</p>
-                <button>♥</button>
+                <button type="button">♥</button>
               </div>
               <div>
                 <p>무슨 바람이 들었는지 주황 머리를 했던 시절이 있습니다. 딱 한 달 하고 덮었어요.</p>
@@ -155,7 +153,7 @@
             <div class="card-section__card-wrapper__card__content-wrapper">
               <div>
                 <p>장기하 소극장 콘서트</p>
-                <button>♥</button>
+                <button type="button">♥</button>
               </div>
               <div>
                 <p>노란색이 저에요! 장기하 인스타에 박제됐어요✌🏻</p>
@@ -169,7 +167,7 @@
             <div class="card-section__card-wrapper__card__content-wrapper">
               <div>
                 <p>부산 여행</p>
-                <button>♥</button>
+                <button type="button">♥</button>
               </div>
               <div>
                 <p>최근에는 부산 여행을 다녀왔어요. 교정 일주일차였어서 아무것도 먹지 못 했답니다..</p>
@@ -179,8 +177,7 @@
         </div>
       </section>
 
-      <span class="anchor" id="album-section"></span>
-      <section class="album-section">
+      <section class="album-section" id="album-section">
         <h2>사진첩</h2>
         <div class="album-section__album-wrapper">
           <div class="album-section__album-wrapper__group">

@@ -1,7 +1,7 @@
 /* 공통 스타일 */
 @font-face {
   font-family: 'Asta Sans';
-  src: url('./fonts/AstaSans-Regular.woff2') format('woff2');
+  src: url('./public/fonts/AstaSans-Regular.woff2') format('woff2');
   font-style: normal;
   font-weight: 400;
   font-display: swap;
@@ -9,7 +9,7 @@
 
 @font-face {
   font-family: 'Asta Sans';
-  src: url('./fonts/AstaSans-SemiBold.woff2') format('woff2');
+  src: url('./public/fonts/AstaSans-SemiBold.woff2') format('woff2');
   font-style: normal;
   font-weight: 500;
   font-display: swap;
@@ -17,7 +17,7 @@
 
 @font-face {
   font-family: 'Asta Sans';
-  src: url('./fonts/AstaSans-Bold.woff2') format('woff2');
+  src: url('./public/fonts/AstaSans-Bold.woff2') format('woff2');
   font-style: normal;
   font-weight: 700;
   font-display: swap;

@@ -27,6 +27,7 @@ export const RankingBoardHeader = styled.div`
 export const ResetButton = styled.button`
   background-color: ${({ theme }) => theme.colors.resetButton};
   color: ${({ theme }) => theme.colors.white};
+  
   &:hover {
     background-color: ${({ theme }) => theme.colors.resetButtonHover};
   }

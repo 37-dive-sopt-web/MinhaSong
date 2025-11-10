@@ -55,25 +55,21 @@ export const theme = {
     background: palette.primary[500],
     header: palette.primary[600],
     main: palette.primary[600],
-    // [TODO] status 이름 수정
     status: palette.primary[400],
     card: palette.primary[200],
+    matchedCard: palette.primary[150],
     gameDiv: palette.primary[600],
     theadTr: palette.primary[400],
-
     modal: palette.primary[600],
     modalOverlay: palette.neutral[800],
     modalLoading: palette.primary[150],
-
     buttonInactive: palette.primary[400],
     buttonActive: palette.primary[200],
     buttonHover: palette.primary[300],
     resetButton: palette.danger[500],
     resetButtonHover: palette.danger[600],
-
     matchedPair: palette.primary[100],
     mismatchedPair: palette.danger[700],
-
     white: palette.neutral[100],
     black: palette.neutral[900],
   },

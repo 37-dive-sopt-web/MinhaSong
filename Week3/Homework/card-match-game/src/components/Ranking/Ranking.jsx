@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
 import { loadLocalStorage, clearLocalStorage } from '../../utils/localstorage.js';
+import { sortGameHistory } from '../../utils/sortGameHistory.js';
 import * as R from './Ranking.styled.js';
 
-export default function Game() {
+export default function Ranking() {
   const [gameHistory, setGameHistory] = useState([]);
 
   const handleClickButton = () => {
@@ -11,7 +12,10 @@ export default function Game() {
   };
 
   useEffect(() => {
-    setGameHistory(loadLocalStorage());
+    const original = loadLocalStorage();
+    const sorted = sortGameHistory(original);
+
+    setGameHistory(sorted);
   }, []);
 
   return (
@@ -42,10 +46,10 @@ export default function Game() {
                 ? <td colspan="4">기록이 존재하지 않아요.</td>
                 : gameHistory.map(({ id, level, clearTime, createdAt }, idx) => (
                     <tr key={id}>
-                      <td>{idx + 1}</td>
-                      <td>Level {level}</td>
-                      <td>{clearTime}</td>
-                      <td>{createdAt}</td>
+                      <td role="cell">{idx + 1}</td>
+                      <td role="cell">Level {level}</td>
+                      <td role="cell">{clearTime}</td>
+                      <td role="cell">{createdAt}</td>
                     </tr>
                   ))
               }

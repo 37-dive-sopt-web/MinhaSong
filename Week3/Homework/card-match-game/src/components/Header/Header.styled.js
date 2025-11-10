@@ -4,6 +4,7 @@ export const Header = styled.header`
   display: flex;
   justify-content: space-between;
   width: 80%;
+  min-width: 1110px;
   padding: ${({ theme }) => theme.spacing.md};
   border-radius: ${({ theme }) => theme.borderRadius.xl};
   background-color: ${({ theme }) => theme.colors.header};

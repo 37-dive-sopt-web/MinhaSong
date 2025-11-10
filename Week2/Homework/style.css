@@ -125,9 +125,9 @@ main {
   display: grid;
   grid-template-areas:
     "name name name name name name"
-    "english_name english_name english_name english_name english_name english_name"
+    "english-name english-name english-name english-name english-name english-name"
     "github github gender gender role role"
-    "code_review_group code_review_group code_review_group age age age"
+    "code-review-group code-review-group code-review-group age age age"
     "apply-button apply-button apply-button reset-button reset-button reset-button";
   grid-template-columns: repeat(6, 1fr);
   grid-gap: 20px;
@@ -138,11 +138,11 @@ main {
     display: grid;
     grid-template-areas:
       "name name"
-      "english_name english_name"
+      "english-name english-name"
       "github github"
       "gender gender"
       "role role"
-      "code_review_group code_review_group"
+      "code-review-group code-review-group"
       "age age"
       "apply-button reset-button";
     grid-template-columns: repeat(2, 1fr);
@@ -160,7 +160,7 @@ main {
 }
 
 .row:nth-child(2) {
-  grid-area: english_name;
+  grid-area: english-name;
 }
 
 .row:nth-child(3) {
@@ -176,7 +176,7 @@ main {
 }
 
 .row:nth-child(6) {
-  grid-area: code_review_group;
+  grid-area: code-review-group;
 }
 
 .row:nth-child(7) {
@@ -224,12 +224,12 @@ main {
 }
 
 .result-section__table col.name,
-.result-section__table col.code_review_group {
+.result-section__table col.code-review-group {
   width: 10%;
 }
 
 .result-section__table col.github,
-.result-section__table col.english_name {
+.result-section__table col.english-name {
   width: 20%;
 }
 
@@ -304,10 +304,10 @@ main {
   display: grid;
   grid-template-areas: 
     "name name name name"
-    "english_name english_name english_name english_name"
+    "english-name english-name english-name english-name"
     "github github github github"
     "gender gender role role"
-    "code_review_group code_review_group age age"
+    "code-review-group code-review-group age age"
     ". . . add-button";
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 20px;
@@ -318,11 +318,11 @@ main {
     display: grid;
     grid-template-areas: 
       "name"
-      "english_name"
+      "english-name"
       "github"
       "gender"
       "role"
-      "code_review_group"
+      "code-review-group"
       "age"
       "add-button";
     grid-template-columns: repeat(1, 1fr);

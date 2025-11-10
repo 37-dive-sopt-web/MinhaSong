@@ -5,6 +5,7 @@ export const Main = styled.main`
   gap: ${({ theme }) => theme.spacing.sm};
   flex: 1;
   width: 80%;
+  min-width: 1110px;
   padding: ${({ theme }) => theme.spacing.md};
   border-radius: ${({ theme }) => theme.borderRadius.xl};
   background-color: ${({ theme }) => theme.colors.main};
@@ -27,7 +28,7 @@ export const RankingBoardHeader = styled.div`
 export const ResetButton = styled.button`
   background-color: ${({ theme }) => theme.colors.resetButton};
   color: ${({ theme }) => theme.colors.white};
-  
+
   &:hover {
     background-color: ${({ theme }) => theme.colors.resetButtonHover};
   }

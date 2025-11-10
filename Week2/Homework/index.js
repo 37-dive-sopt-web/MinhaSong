@@ -16,35 +16,36 @@ function renderTable(data) {
   const tbody = document.querySelector('.result-section__table tbody');
   let tr = '';
 
-  data.forEach((member) => {
+  if (data.length === 0) {
     tr += `
       <tr class="row">
-        <td>
-          <input type="checkbox" name="member" class="td__checkbox" value="${member.id}" />
-        </td>
-        <td>${member.name}</td>
-        <td>${member.englishName}</td>
-        <td>
-          <a href="https://github.com/${member.github}" target="_blank">
-            <span>${member.github}</span>
-          </a>
-        </td>
-        <td>${fromEnglishToKorean(member.gender)}</td>
-        <td>${member.role}</td>
-        <td>${member.codeReviewGroup}</td>
-        <td>${member.age}</td>
+        <td colspan="8">조건에 맞는 데이터가 없어요.</td>
       </tr>
     `;
-  });
+  } else {
+    data.forEach((member) => {
+      tr += `
+        <tr class="row">
+          <td>
+            <input type="checkbox" name="member" class="td__checkbox" value="${member.id}" />
+          </td>
+          <td>${member.name}</td>
+          <td>${member.englishName}</td>
+          <td>
+            <a href="https://github.com/${member.github}" target="_blank">
+              <span>${member.github}</span>
+            </a>
+          </td>
+          <td>${fromEnglishToKorean(member.gender)}</td>
+          <td>${member.role}</td>
+          <td>${member.codeReviewGroup}</td>
+          <td>${member.age}</td>
+        </tr>
+      `;
+    });
+  }
 
   tbody.innerHTML = tr;
-
-  if (!tr) {
-    const newElement = document.createElement('div');
-    newElement.textContent = '조건에 맞는 데이터가 없어요.';
-    newElement.style.textAlign = 'center';
-    resultSection.appendChild(newElement);
-  }
 }
 
 renderTable(JSON.parse(localStorage.getItem('membersData')));
@@ -158,7 +159,7 @@ function addRow(e) {
   const newData = [ ...originalData, {id, name, englishName, github, gender, role, codeReviewGroup, age}];
 
   if (!name || !englishName || !github || !gender || !role || !codeReviewGroup || !age) {
-    alert('모든 필드를 입력해주세요.');
+    // alert('모든 필드를 입력해주세요.');
     e.stopPropagation();
   } else {
     localStorage.setItem('membersData', JSON.stringify(newData));

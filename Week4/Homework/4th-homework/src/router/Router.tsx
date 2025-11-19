@@ -15,7 +15,7 @@ const router = createBrowserRouter([
     Component: Signup,
   },
   {
-    path: '/mypage',
+    path: '/mypage/:id',
     Component: Mypage,
   },
   {

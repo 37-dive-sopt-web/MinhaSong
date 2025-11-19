@@ -1,26 +1,29 @@
-import React from 'react';
+import React, { type ReactNode } from 'react';
+import { cn } from '../utils/cn';
 
-type ButtonProps = {
-  label: string;
-} & React.ButtonHTMLAttributes<HTMLButtonElement>;
+interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  children: ReactNode;
+}
 
 const Button = ({
-  label,
-  type="button",
-  disabled=false,
+  children,
+  type = "button",
+  className,
+  disabled = false,
   ...props
 }: ButtonProps) => {
+  const baseStyle = 'flex-1 p-3 rounded-lg text-white font-bold transition duration-200 ease-in-out';
+  const activeStyle = 'bg-primary-500 hover:bg-primary-600';
+  const disabledStyle = 'bg-primary-200 cursor-not-allowed';
+
   return (
     <button
-      // [TODO] className 덮어씌워지는 거 (공통 스타일은 따로 빼고 싶은디 덮어씌워질까봐)
-      className={!disabled
-        ? "flex-1 p-3 rounded-lg bg-primary-500 text-white font-bold transition duration-200 ease-in-out hover:bg-primary-600"
-        : "flex-1 p-3 rounded-lg bg-primary-200 text-white font-bold transition duration-200 ease-in-out cursor-not-allowed"}
       type={type}
+      className={cn(baseStyle, !disabled ? activeStyle : disabledStyle, className)}
       disabled={disabled}
       {...props}
     >
-      {label}
+      {children}
     </button>
   );
 };

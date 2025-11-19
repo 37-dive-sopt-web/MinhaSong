@@ -2,46 +2,52 @@ import { useState } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router';
 import { Modal } from './index';
 import { Menu } from 'lucide-react';
+import { cn } from '../utils/cn';
+import { getData, clearData } from '../utils/localstorage';
 
-const Header = () => {
+interface HeaderProps {
+  myName: string;
+  className?: string;
+}
+
+const Header = ({ myName, className }: HeaderProps) => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
 
   const navigate = useNavigate();
   const location = useLocation();
 
-  const handleClickLogout = () => {
-    // 로그아웃 로직
-    // [TODO] 로그아웃 버튼 클릭 시 userId 저장 정보 삭제하고 로그인 페이지로 이동
+  const userPk = getData();
 
+  const baseMenuStyle = 'text-primary-200 transition duration-200 ease-in-out hover:text-white';
+  const baseHamburgerStyle = 'text-[#767676] transition duration-200 ease-in-out hover:text-black';
+
+  const handleClickLogout = () => {
+    clearData();
     navigate('/login');
   };
 
-  // [TODO] 이벤트 핸들러나 함수를 값으로 넘겨주는 경우.. 함수화할지 말지 통일
-
-  {/* [TODO] fixed 이렇게 하는 거 맞아? */}
   return (
     <>
       <header className="fixed top-0 flex justify-between w-screen pt-7 pr-20 pb-7 pl-20 bg-primary-500">
         <div className="flex flex-col gap-1">
           <h1 className="text-3xl font-bold text-white">마이페이지</h1>
-          {/* [TODO] 사용자 이름 가져오기 */}
-          <span className="text-white">안녕하세요, 엄경호님</span>
+          <span className="text-white">안녕하세요, {myName}님</span>
         </div>
-        {/* [TODO] ul, li로? */}
+        {/* 기본 메뉴 */}
         <nav className="hidden sm:flex sm:items-center sm:gap-4">
-          <Link to="/mypage">
-            <span className={`text-primary-200 transition duration-200 ease-in-out hover:text-white ${location.pathname === '/mypage' && 'text-white font-bold'}`}>내 정보</span>
+          <Link to={`/mypage/${userPk}`}>
+            <span className={cn(baseMenuStyle, location.pathname === `/mypage/${userPk}` && 'text-white font-bold', className)}>
+              내 정보
+            </span>
           </Link>
           <Link to="/members">
-            <span className={`text-primary-200 transition duration-200 ease-in-out hover:text-white ${location.pathname === '/members' && 'text-white font-bold'}`}>회원 조회</span>
+            <span className={cn(baseMenuStyle, location.pathname === '/members' && 'text-white font-bold', className)}>회원 조회</span>
           </Link>
-          <button className="text-primary-200 transition duration-200 ease-in-out hover:text-white" onClick={handleClickLogout}>로그아웃</button>
-          <button className="text-primary-200 transition duration-200 ease-in-out hover:text-white" onClick={() => setIsModalOpen(true)}>회원탈퇴</button>
+          <button className={cn(baseMenuStyle, className)} onClick={handleClickLogout}>로그아웃</button>
+          <button className={cn(baseMenuStyle, className)} onClick={() => setIsModalOpen(true)}>회원탈퇴</button>
         </nav>
-        {/* [TODO] 로컬 컴포넌트로 분리? */}
-        {/* [TODO] 오버레이할까? */}
-        {/* [TODO] isMenuOpen이 true이면 화면 늘렸다가 줄였을 때 메뉴 자동으로 뜨는 문제 */}
+        {/* 햄버거 메뉴 */}
         <button className="sm:hidden" onClick={() => setIsMenuOpen((prev) => !prev)}>
           <Menu size={24} color='white' />
         </button>
@@ -58,15 +64,15 @@ const Header = () => {
               borderWidth: 0
             }
           }
-          >
-          <Link to="/mypage">
-            <span className={`text-[#767676] transition duration-200 ease-in-out hover:text-black ${location.pathname === '/mypage' && 'text-black font-bold'}`}>내 정보</span>
+        >
+          <Link to={`/mypage/${userPk}`}>
+            <span className={cn(baseHamburgerStyle, location.pathname === `/mypage/${userPk}` && 'text-black font-bold', className)}>내 정보</span>
           </Link>
           <Link to="/members">
-            <span className={`text-[#767676] transition duration-200 ease-in-out hover:text-black ${location.pathname === '/members' && 'text-black font-bold'}`}>회원 조회</span>
+            <span className={cn(baseHamburgerStyle, location.pathname === '/members' && 'text-black font-bold', className)}>회원 조회</span>
           </Link>
-          <button className="text-[#767676] transition duration-200 ease-in-out hover:text-black" onClick={() => { handleClickLogout(); }}>로그아웃</button>
-          <button className="text-[#767676] transition duration-200 ease-in-out hover:text-black" onClick={() => { setIsModalOpen(true); setIsMenuOpen(false); }}>회원탈퇴</button>
+          <button className={cn(baseHamburgerStyle, className)} onClick={handleClickLogout}>로그아웃</button>
+          <button className={cn(baseHamburgerStyle, className)} onClick={() => { setIsModalOpen(true); setIsMenuOpen(false); }}>회원탈퇴</button>
         </nav>
       </header>
       { isModalOpen && <Modal onClose={() => setIsModalOpen(false)} /> }

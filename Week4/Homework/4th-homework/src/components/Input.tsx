@@ -1,17 +1,18 @@
 import React from 'react';
+import { cn } from '../utils/cn';
 
 type InputProps = React.InputHTMLAttributes<HTMLInputElement>;
 
-// [TODO] padding, border, rounded-lg, 컬러 등 토큰화..
 const Input = ({
   type="text",
+  className,
   placeholder,
   ...props
 }: InputProps) => {
   return (
     <input
-      className="w-full p-2.5 border rounded-lg border-gray-300 focus:border-primary-500"
       type={type}
+      className={cn('w-full p-2.5 border rounded-lg border-gray-300 focus:border-primary-500', className)}
       placeholder={placeholder}
       {...props}
     />

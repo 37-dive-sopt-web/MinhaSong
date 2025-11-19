@@ -1,59 +1,90 @@
-import { useState } from 'react';
 import { useNavigate } from 'react-router';
 import { BoldLink, Button, FormRow } from '../components/index';
+import { login } from '../api/auth';
+import { saveData } from '../utils/localstorage';
+import { useForm } from '../hooks/useForm';
 
-// [TODO] 로그인 성공시 마이페이지로 이동 및 userId 저장 (userId 저장 위치는 자유. localStorage, SessionStorage, ...)
-// [TODO] 로그인 실패 처리(UI)
+type FormStatus = 'idle' | 'success' | 'error';
 
-{/* [TODO] gap 토큰화 */}
+interface LoginForm {
+  userId: string;
+  userPw: string;
+  status: FormStatus;
+}
+
 const Login = () => {
-  const [userId, setUserId] = useState<string>('');
-  const [userPw, setUserPw] = useState<string>('');
+  const { form, handleChange } = useForm<LoginForm>({
+    userId: '',
+    userPw: '',
+    status: 'idle',
+  });
 
   const navigate = useNavigate();
 
-  // [TODO] 굳이 함수화하지 말까?
-  const handleButtonClick = () => {
-    // [TODO] 로그인 api 로직 추가
+  const handleLogin = async (form: LoginForm) => {
+    try {
+      const res = await login({
+        username: form.userId,
+        password: form.userPw,
+      });
 
-    navigate('/mypage');
+      const userPk = res.userId;
+
+      saveData(userPk);
+      navigate(`/mypage/${userPk}`);
+    } catch (e) {
+      console.error(e);
+      handleChange('status', 'error');
+    }
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    handleLogin(form);
   };
 
   const isButtonDisabled = () => {
-    return userId === '' || userPw === '';
+    return form.userId === '' || form.userPw === '';
   };
 
   return (
     <main className="flex justify-center h-full">
       <section className="flex flex-col justify-center gap-5 w-md">
         <h1 className="text-3xl font-bold">로그인</h1>
-        <form className="w-full">
+        <form 
+          className="w-full"
+          onSubmit={(e) => handleSubmit(e)}
+        >
           <fieldset className="flex flex-col gap-5">
             <legend className="sr-only">로그인 폼</legend>
             <FormRow
               id="user-id"
               label="아이디"
-              value={userId}
-              onChange={(e) => setUserId(e.target.value)}
+              value={form.userId}
+              onChange={(e) => handleChange('userId', e.target.value)}
               placeholder="아이디를 입력하세요"
             />
             <FormRow
               id="user-pw"
               type="password"
               label="비밀번호"
-              value={userPw}
-              onChange={(e) => setUserPw(e.target.value)}
+              value={form.userPw}
+              onChange={(e) => handleChange('userPw', e.target.value)}
               placeholder="비밀번호를 입력하세요"
             />
+            { form.status === 'error'
+                && <span className="error-text" role="alert">아이디, 비밀번호가 존재하지 않아요</span>
+            }
             <Button
-              label="로그인"
-              onClick={handleButtonClick}
+              type="submit"
               disabled={isButtonDisabled()}
-            />
+            >
+              로그인
+            </Button>
           </fieldset>
         </form>
         <div className="flex justify-center">
-          <BoldLink to="/signup" label="회원가입" />
+          <BoldLink to="/signup">회원가입</BoldLink>
         </div>
       </section>
     </main>

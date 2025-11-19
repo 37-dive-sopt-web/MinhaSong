@@ -1,15 +1,35 @@
+import { useNavigate } from 'react-router';
 import Portal from './Portal.tsx';
 import { Button } from '../components/index';
+import { deleteUser } from '../api/user';
+import { getData, clearData } from '../utils/localstorage';
 
-// [TODO] interface/type 통일
 interface ModalProps {
   onClose: () => void;
 }
 
-// [TODO] 회원탈퇴 실패 시 에러메시지 alert 출력
-// [TODO] 회원탈퇴 성공 시 alert 출력 후 login 페이지로 이동
-
 const Modal = ({ onClose }: ModalProps) => {
+  const navigate = useNavigate();
+
+  const userPk = getData();
+
+  const handleDeleteUser = async () => {
+    try {
+      await deleteUser(Number(userPk));
+
+      clearData();
+      alert('회원탈퇴에 성공했어요.');
+      navigate('/login');
+    } catch (e) {
+      console.error(e);
+      alert('회원탈퇴에 실패했어요.');
+    }
+  };
+
+  const handleClickButton = () => {
+    handleDeleteUser();
+  };
+
   return (
     <Portal selector="#modal-root">
       <div
@@ -21,9 +41,8 @@ const Modal = ({ onClose }: ModalProps) => {
             <span>탈퇴 후에는 모든 정보가 삭제돼요.</span>
           </div>
           <div className="flex gap-3 w-full">
-            <Button label="취소" onClick={onClose} />
-            {/* [TODO] 회원탈퇴 버튼 색깔 */}
-            <Button label="회원탈퇴" />
+            <Button onClick={onClose}>취소</Button>
+            <Button className="bg-[#F04150] hover:bg-[#EE2A3D]" onClick={handleClickButton}>회원탈퇴</Button>
           </div>
         </div>
       </div>

@@ -1,17 +1,20 @@
+import { type ReactNode } from 'react';
 import { Link, type LinkProps } from 'react-router';
+import { cn } from '../utils/cn';
 
-type BoldLinkProps = {
-  label: string
-} & LinkProps;
+interface BoldLinkProps extends LinkProps {
+  children: ReactNode;
+}
 
 const BoldLink = ({
-  label,
+  children,
   to,
+  className,
   ...props
 }: BoldLinkProps) => {
   return (
-    <Link to={to} {...props}>
-      <span className="text-primary-500 font-bold">{label}</span>
+    <Link to={to} className={cn("text-primary-500 font-bold", className)} {...props}>
+      {children}
     </Link>
   );
 };

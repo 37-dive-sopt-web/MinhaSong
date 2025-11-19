@@ -1,28 +1,132 @@
 import { useState } from 'react';
-import { useNavigate, Link } from 'react-router';
-import { BoldLink, Button, FormRow } from '../components/index';
+import { useNavigate } from 'react-router';
+import { AxiosError } from 'axios';
 import { ArrowLeft } from 'lucide-react';
+import { BoldLink, Button, FormRow } from '../components/index';
+import { signup } from '../api/auth';
+import { useForm } from '../hooks/useForm';
 
-// [TODO] gap 토큰화
+interface SignupForm {
+  userId: string;
+  userPw: string;
+  userPwConfirm: string;
+  userName: string;
+  userEmail: string;
+  userAge: string;
+}
+
+interface ErrorDetail {
+  code: string;
+  message: string;
+}
+
+interface ErrorResponse {
+  success: false;
+  code: string;
+  message: string;
+  data: ErrorDetail;
+}
+
+const checkLength = (pw: string) => {
+  return 8 <= pw.length && pw.length <= 64;
+};
+
+const checkLowerIncluded = (pw: string) => {
+  return /[a-z]/.test(pw);
+};
+
+const checkUpperIncluded = (pw: string) => {
+  return /[A-Z]/.test(pw);
+};
+
+const checkNumIncluded = (pw: string) => {
+  return /[0-9]/.test(pw);
+};
+
+const checkSpecialCharIncluded = (pw: string) => {
+  return /[!@#$%^&*()]/.test(pw);
+};
+
+const checkBlankIncluded = (pw: string) => {
+  return /\s/.test(pw);
+};
+
+const isUserPwConfirmEmpty = (pwConfirm: string) => {
+  return pwConfirm === '';
+};
+
+const isPwUnmatched = (pw: string, pwConfirm: string) => {
+  return pw !== pwConfirm;
+};
+
 const Signup = () => {
   const [isUserIdForm, setIsUserIdForm] = useState<boolean>(true);
   const [isUserPwForm, setIsUserPwForm] = useState<boolean>(false);
   const [isUserInfoForm, setIsUserInfoForm] = useState<boolean>(false);
 
-  const [userId, setUserId] = useState<string>('');
-  const [userPw, setUserPw] = useState<string>('');
-  const [userPwConfirm, setUserPwConfirm] = useState<string>('');
-  const [userName, setUserName] = useState<string>('');
-  const [userEmail, setUserEmail] = useState<string>('');
-  const [userAge, setUserAge] = useState<number | ''>('');
-  // [TODO] userAge 기본값 0으로 하면 input에 0 떠있음.. 그래서 string도 추가했는디 보통 어떻게 하는지
+  const { form, handleChange, resetForm } = useForm<SignupForm>({
+    userId: '',
+    userPw: '',
+    userPwConfirm: '',
+    userName: '',
+    userEmail: '',
+    userAge: '',
+  });
+  
 
   const [userPwTouched, setUserPwTouched] = useState<boolean>(false);
   const [userEmailTouched, setUserEmailTouched] = useState<boolean>(false);
 
   const navigate = useNavigate();
 
-  const handleButtonClick = () => {
+  const handleBackClick = () => {
+    if (isUserIdForm) {
+      handleChange('userId', '');
+      navigate('/login');
+    } else if (isUserPwForm) {
+      handleChange('userPw', '');
+      handleChange('userPwConfirm', '');
+      setUserPwTouched(false);
+      setIsUserPwForm(false);
+      setIsUserIdForm(true);
+    } else {
+      handleChange('userName', '');
+      handleChange('userEmail', '');
+      handleChange('userAge', '');
+      setUserEmailTouched(false);
+      setIsUserInfoForm(false);
+      setIsUserPwForm(true);
+    }
+  }
+
+  const handleSignup = async (form: SignupForm) => {
+    try {
+      const res = await signup({
+        username: form.userId,
+        password: form.userPw,
+        name: form.userName,
+        email: form.userEmail,
+        age: Number(form.userAge),
+      });
+
+      alert(`${res.name}님 환영합니다!`);
+      navigate("/login");
+    } catch (e) {
+      const error = e as AxiosError<ErrorResponse>;
+
+      if (!error.response) {
+        alert("서버 응답이 없습니다.");
+        return;
+      }
+
+      resetForm();
+      setUserPwTouched(false);
+      setUserEmailTouched(false);
+      alert(error.response.data.message);
+    }
+  };
+
+  const handleNextClick = () => {
     if (isUserIdForm) {
       setIsUserIdForm(false);
       setIsUserPwForm(true);
@@ -33,97 +137,57 @@ const Signup = () => {
       setIsUserInfoForm(false);
       setIsUserIdForm(true);
 
-      // 회원가입 로직
-      // [TODO] 회원가입 실패 시 에러메시지 alert 출력
-      // [TODO] 회원가입 성공 시 alert에 이름 출력 및 login 페이지로 이동
-
-      alert(userName);
-      navigate('/login');
+      handleSignup(form);
     }
   };
 
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    handleNextClick();
+  };
+
   const isUserIdValid = () => {
-    return userId.length <= 50;
+    return form.userId.length <= 50;
   };
 
-  // [TODO] utils로 분리?
-  // [TODO] 인수로 전달해줘 아님 그냥 상태에 바로 접근해서 해?
-  const checkLength = () => {
-    return 8 <= userPw.length && userPw.length <= 64;
-  };
+  const validateUserPw = (userPw: string, userPwConfirm: string) => {
+    if (!checkLength(userPw)) return { isValid: false, error: "8~64자로 입력해주세요" };
+    if (!checkUpperIncluded(userPw)) return { isValid: false, error: "대문자를 포함해주세요" };
+    if (!checkNumIncluded(userPw)) return { isValid: false, error: "숫자를 포함해주세요" };
+    if (!checkSpecialCharIncluded(userPw)) return { isValid: false, error: "특수문자를 포함해주세요" };
+    if (!checkLowerIncluded(userPw)) return { isValid: false, error: "소문자를 포함해주세요" };
+    if (checkBlankIncluded(userPw)) return { isValid: false, error: "공백은 포함될 수 없어요" };
+    if (isUserPwConfirmEmpty(userPwConfirm)) return { isValid: false, error: "비밀번호를 모두 입력해주세요" };
+    if (isPwUnmatched(userPw, userPwConfirm)) return { isValid: false, error: "비밀번호가 일치하지 않아요" };
 
-  const checkLowerIncluded = () => {
-    return /[a-z]/.test(userPw);
-  };
-
-  const checkUpperIncluded = () => {
-    return /[A-Z]/.test(userPw);
-  };
-
-  const checkNumIncluded = () => {
-    return /[0-9]/.test(userPw);
-  };
-
-  const checkSpecialCharIncluded = () => {
-    return /[!@#$%^&*()]/.test(userPw);
-  };
-
-  const checkBlankIncluded = () => {
-    return /\s/.test(userPw);
-  };
-
-  const isUserPwConfirmEmpty = () => {
-    return userPwConfirm === '';
-  };
-
-  const isPwUnmatched = () => {
-    return userPw !== userPwConfirm;
-  };
-
-  const isUserPwValid = () => {
-    if (!checkLength()) return false;
-    else if (!checkUpperIncluded()) return false;
-    else if (!checkNumIncluded()) return false;
-    else if (!checkSpecialCharIncluded()) return false;
-    else if (!checkLowerIncluded()) return false;
-    else if (checkBlankIncluded()) return false;
-    else if (isUserPwConfirmEmpty()) return false;
-    else if (isPwUnmatched()) return false;
-    else return true;
-  };
-
-  const getUserPwError = () => {
-    if (!checkLength()) return "8~64자로 입력해주세요";
-    if (!checkUpperIncluded()) return "대문자를 포함해주세요";
-    if (!checkNumIncluded()) return "숫자를 포함해주세요";
-    if (!checkSpecialCharIncluded()) return "특수문자를 포함해주세요";
-    if (!checkLowerIncluded()) return "소문자를 포함해주세요";
-    if (checkBlankIncluded()) return "공백은 포함될 수 없어요"
-    if (isUserPwConfirmEmpty()) return "비밀번호를 모두 입력해주세요";
-    if (isPwUnmatched()) return "비밀번호가 일치하지 않아요";
-    return null;
-  };
+  return { isValid: true, error: null };
+};
 
   const isUserEmailValid = () => {
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(userEmail);
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.userEmail);
   };
 
-  // [TODO] utils로 뺄까?
   const isButtonDisabled = () => {
-    return (!!isUserIdForm && (userId === '' || !isUserIdValid()))
-      || (!!isUserPwForm && (userPw === '' || !isUserPwValid()))
-      || (!!isUserInfoForm && (userName === '' || userEmail === '' || userAge === '' || !isUserEmailValid()));
+    return (!!isUserIdForm && (form.userId === '' || !isUserIdValid()))
+      || (!!isUserPwForm && (form.userPw === '' || !validateUserPw(form.userPw, form.userPwConfirm).isValid))
+      || (!!isUserInfoForm && (form.userName === '' || form.userEmail === '' || form.userAge === '' || !isUserEmailValid()));
   };
 
   return (
     <main className="flex justify-center h-full">
       <section className="flex flex-col justify-center gap-5 w-md">
-        {/* [TODO] 뒤로가기 보통 어떻게 하지 / 로그인으로 이동하는건지 이점 폼으로 이동하는건지 */}
-        <Link to="/login" aria-label="로그인 페이지로 이동">
+        <button
+          type="button"
+          onClick={handleBackClick}
+          aria-label="뒤로가기"
+        >
           <ArrowLeft color='#3983EF' size={24} />
-        </Link>
+        </button>
         <h1 className="text-3xl font-bold">회원가입</h1>
-        <form className="w-full">
+        <form
+          className="w-full"
+          onSubmit={handleSubmit}
+        >
           <fieldset className="flex flex-col gap-5">
             <legend className="sr-only">회원가입 폼</legend>
             {
@@ -131,8 +195,8 @@ const Signup = () => {
                 <FormRow
                   id="userId"
                   label="아이디"
-                  value={userId}
-                  onChange={(e) => setUserId(e.target.value)}
+                  value={form.userId}
+                  onChange={(e) => handleChange('userId', e.target.value)}
                   placeholder="아이디를 입력하세요"
                 />
               )
@@ -144,16 +208,16 @@ const Signup = () => {
                     id="userPw"
                     type="password"
                     label="비밀번호"
-                    value={userPw}
-                    onChange={(e) => { setUserPw(e.target.value); setUserPwTouched(true); }}
+                    value={form.userPw}
+                    onChange={(e) => { handleChange('userPw', e.target.value); setUserPwTouched(true); }}
                     placeholder="비밀번호를 입력하세요"
                   />
                   <FormRow
                     id="userPwConfirm"
                     type="password"
                     label="비밀번호 확인"
-                    value={userPwConfirm}
-                    onChange={(e) => setUserPwConfirm(e.target.value)}
+                    value={form.userPwConfirm}
+                    onChange={(e) => handleChange('userPwConfirm', e.target.value)}
                     placeholder="비밀번호 확인"
                   />
                 </>
@@ -165,16 +229,16 @@ const Signup = () => {
                   <FormRow
                     id="userName"
                     label="이름"
-                    value={userName}
-                    onChange={(e) => setUserName(e.target.value)}
+                    value={form.userName}
+                    onChange={(e) => handleChange('userName', e.target.value)}
                     placeholder="이름을 입력하세요"
                   />
                   <FormRow
                     id="userEmail"
                     type="email"
                     label="이메일"
-                    value={userEmail}
-                    onChange={(e) => { setUserEmail(e.target.value); setUserEmailTouched(true); }}
+                    value={form.userEmail}
+                    onChange={(e) => { handleChange('userEmail', e.target.value); setUserEmailTouched(true); }}
                     placeholder="name@example.com"
                   />
                   <FormRow
@@ -182,28 +246,27 @@ const Signup = () => {
                     type="number"
                     min={1}
                     label="나이"
-                    value={userAge}
-                    onChange={(e) => setUserAge(Number(e.target.value))}
+                    value={form.userAge}
+                    onChange={(e) => handleChange('userAge', e.target.value)}
                     placeholder="숫자로 입력"
                   />
                 </>
               )
             }
-            {/* [TODO] enter 누르면 버튼 눌러지면서 URL에 ? 생김.. 왜 그런겨? 없애기 */}
-            {/* [TODO] 더 효율적으로 / 객체 상수로 분리할 수도 있을듯..? */}
             { isUserIdForm && !isUserIdValid() && <span className="error-text">아이디는 50자 이하로 입력해주세요</span> }
-            { isUserPwForm && userPwTouched && !isUserPwValid() && <span className="error-text">{getUserPwError()}</span> }
+            { isUserPwForm && userPwTouched && !validateUserPw(form.userPw, form.userPwConfirm).isValid && <span className="error-text">{validateUserPw(form.userPw, form.userPwConfirm).error}</span> }
             { isUserInfoForm && userEmailTouched && !isUserEmailValid() && <span className="error-text">올바른 이메일을 입력해주세요</span> }
             <Button
-              label={isUserInfoForm ? "회원가입" : "다음"}
-              onClick={handleButtonClick}
+              type="submit"
               disabled={isButtonDisabled()}
-            />
+            >
+              {isUserInfoForm ? "회원가입" : "다음"}
+            </Button>
           </fieldset>
         </form>
         <div className="flex justify-center gap-1">
           <span>이미 계정이 있나요?</span>
-          <BoldLink to="/login" label="로그인" />
+          <BoldLink to="/login">로그인</BoldLink>
         </div>
       </section>
     </main>

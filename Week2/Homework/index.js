@@ -60,7 +60,7 @@ function renderTable(data) {
 }
 
 // 필터링
-function filteredBy(data, field, value) {
+function filteredByField(data, field, value) {
   if (field === 'gender') {
     return data.filter((member) => `${value}` === '' ? true: fromEnglishToKorean(member[`${field}`]) === `${value}`);
   } else if (field === 'codeReviewGroup' || field === 'age') {
@@ -90,13 +90,13 @@ function applyFilter() {
   console.log(name);
 
   const filteredData = originalData.filter((member) =>
-    filteredBy(originalData, 'name', name).includes(member)
-    && filteredBy(originalData, 'englishName', englishName).includes(member)
-    && filteredBy(originalData, 'github', github).includes(member)
-    && filteredBy(originalData, 'gender', gender).includes(member)
-    && filteredBy(originalData, 'role', role).includes(member)
-    && filteredBy(originalData, 'codeReviewGroup', codeReviewGroup).includes(member)
-    && filteredBy(originalData, 'age', age).includes(member)
+    filteredByField(originalData, 'name', name).includes(member)
+    && filteredByField(originalData, 'englishName', englishName).includes(member)
+    && filteredByField(originalData, 'github', github).includes(member)
+    && filteredByField(originalData, 'gender', gender).includes(member)
+    && filteredByField(originalData, 'role', role).includes(member)
+    && filteredByField(originalData, 'codeReviewGroup', codeReviewGroup).includes(member)
+    && filteredByField(originalData, 'age', age).includes(member)
   );
 
   renderTable(filteredData);

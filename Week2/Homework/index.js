@@ -1,4 +1,4 @@
-import { members } from './members.js';
+import { members, getData } from './members.js';
 
 const applyButton = document.querySelector('.apply-button');
 const resetButton = document.querySelector('.reset-button');
@@ -12,7 +12,7 @@ const modalSection = document.querySelector('.modal-section');
 const modalSectionOverlay = document.querySelector('.modal-section--overlay');
 
 // 데이터 세팅
-if (!localStorage.getItem("membersData")) {
+if (!getData()) {
   localStorage.setItem("membersData", JSON.stringify(members));
 }
 
@@ -71,7 +71,7 @@ function filteredByField(data, field, value) {
 }
 
 function applyFilter() {
-  const originalData = JSON.parse(localStorage.getItem('membersData'));
+  const originalData = getData();
   // const name = document.querySelector('.search-section__form #name').value;
   // const englishName = document.querySelector('.search-section__form #english_name').value;
   // const github = document.querySelector('.search-section__form #github').value;
@@ -103,7 +103,7 @@ function applyFilter() {
 }
 
 function resetFilter() {
-  const originalData = JSON.parse(localStorage.getItem('membersData'));
+  const originalData = getData();
   const form = document.querySelector('.search-section__form');
 
   form.reset();
@@ -131,12 +131,12 @@ function selectOne(e) {
 function deleteRow() {
   const checkArray = document.querySelectorAll('.td__checkbox');
 
-  const originalData = JSON.parse(localStorage.getItem('membersData'));
+  const originalData = getData();
   const filteredData = originalData.filter((_, idx) => !checkArray[idx].checked);
 
   localStorage.setItem('membersData', JSON.stringify(filteredData));
 
-  const updatedData = JSON.parse(localStorage.getItem('membersData'));
+  const updatedData = getData();
 
   renderTable(updatedData);
 
@@ -145,7 +145,7 @@ function deleteRow() {
 
 // 추가
 function addRow(e) {
-  const originalData = JSON.parse(localStorage.getItem('membersData'));
+  const originalData = getData();
   const form = document.querySelector('.modal-section__form');
   const id = originalData[originalData.length - 1].id + 1;
   const name = document.querySelector('.modal-name').value;
@@ -167,7 +167,7 @@ function addRow(e) {
     closeModal(e);
   }
 
-  const updatedData = JSON.parse(localStorage.getItem('membersData'));
+  const updatedData = getData();
 
   renderTable(updatedData);
 }
@@ -184,7 +184,7 @@ function closeModal(e) {
   }
 }
 
-renderTable(JSON.parse(localStorage.getItem('membersData')));
+renderTable(getData());
 applyButton.addEventListener('click', applyFilter);
 resetButton.addEventListener('click', resetFilter);
 checkAll.addEventListener('click', selectAll);

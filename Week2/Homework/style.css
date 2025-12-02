@@ -30,7 +30,7 @@
 }
 
 body {
-  background-color: #F5F7FB;
+  background-color: var(--gray-100);
 }
 
 body:not(h1, h2, h3) {
@@ -42,18 +42,18 @@ section {
   padding: 1.2rem;
   margin: 0 auto;
   border-radius: 8px;
-  background-color: #FFFFFF;
+  background-color: var(--white);
 }
 
 button {
   padding: 0.4em;
   border-width: 0;
   border-radius: 8px;
-  background-color: #8EE5D6;
+  background-color: var(--primary-400);
 }
 
 button:hover {
-  background-color: #60CFBA;
+  background-color: var(--primary-500);
   transition-duration: 0.2s;
   transition-timing-function: ease-in-out;
 }
@@ -74,7 +74,7 @@ select {
   padding: 0.6em;
   border-width: 1px;
   border-radius: 8px;
-  border-color: #E3E3E3;
+  border-color: var(--gray-200);
   border-style: solid;
 }
 
@@ -88,7 +88,7 @@ table {
 }
 
 span {
-  color: #60CFBA;
+  color: var(--primary-500);
 }
 
 /* 헤더 */
@@ -96,7 +96,7 @@ span {
 header {
   display: flex;
   padding: 1.8rem;
-  background-color: #8EE5D6;
+  background-color: var(--primary-400);
 }
 
 header > * {
@@ -107,7 +107,7 @@ header > * {
 header span:nth-of-type(2) {
   display: flex;
   align-items: center;
-  color: #000000;
+  color: var(--black);
 }
 
 main {
@@ -245,15 +245,15 @@ main {
 }
 
 .result-section__table thead {
-  background-color: #E0FAF3;
+  background-color: var(--primary-300);
 }
 
 .row--selected {
-  background-color: #F1FDFA;
+  background-color: var(--primary-200);
 }
 
 .result-section__table tbody .row:hover {
-  background-color: #F1FDFA;
+  background-color: var(--primary-200);
 }
 
 .result-section__table tr {
@@ -264,7 +264,7 @@ main {
 .result-section__table th,
 .result-section__table td {
   border-bottom-width: 2px;
-  border-bottom-color: #E3E3E3;
+  border-bottom-color: var(--gray-200);
   border-bottom-style: solid;
 }
 

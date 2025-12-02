@@ -192,13 +192,12 @@ function addRow(e) {
 
 // 모달
 function openModal() {
-  modalSectionOverlay.style.display = 'block';
-  modalSectionOverlay.style.position = 'fixed';
+  modalSectionOverlay.classList.add('active');
 }
 
 function closeModal(e) {
   if (!modalSection.contains(e.target) || closeButton.contains(e.target) || e.target.className === 'add-button') {
-    modalSectionOverlay.style.display = 'none';
+    modalSectionOverlay.classList.remove('active');
   }
 }
 

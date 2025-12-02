@@ -278,6 +278,11 @@ main {
   background-color: rgba(87, 87, 87, 0.4);
 }
 
+.modal-section--overlay.active {
+  display: block;
+  position: fixed;
+}
+
 .modal-section {
   position: fixed;
   top: 50%;

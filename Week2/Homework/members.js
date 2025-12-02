@@ -1,6 +1,7 @@
 const LOCALSTORAGE_KEY = 'membersData';
 
-export const getData = () => JSON.parse(localStorage.getItem(LOCALSTORAGE_KEY));
+export const setLocalStorage = (data) => localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify(data));
+export const getLocalStorage = () => JSON.parse(localStorage.getItem(LOCALSTORAGE_KEY));
 
 export const members = [
   {

@@ -1,4 +1,4 @@
-import { members, getData } from './members.js';
+import { members, setLocalStorage, getLocalStorage } from './members.js';
 
 const applyButton = document.querySelector('.apply-button');
 const resetButton = document.querySelector('.reset-button');
@@ -12,8 +12,8 @@ const modalSection = document.querySelector('.modal-section');
 const modalSectionOverlay = document.querySelector('.modal-section--overlay');
 
 // 데이터 세팅
-if (!getData()) {
-  localStorage.setItem("membersData", JSON.stringify(members));
+if (!getLocalStorage()) {
+  setLocalStorage(members);
 }
 
 // 유틸 함수
@@ -94,7 +94,7 @@ function filteredByField(data, field, value) {
 }
 
 function applyFilter() {
-  const originalData = getData();
+  const originalData = getLocalStorage();
   const { 
     name,
     englishName,
@@ -119,7 +119,7 @@ function applyFilter() {
 }
 
 function resetFilter() {
-  const originalData = getData();
+  const originalData = getLocalStorage();
   const form = document.querySelector('.search-section__form');
 
   form.reset();
@@ -147,12 +147,12 @@ function selectOne(e) {
 function deleteRow() {
   const checkArray = document.querySelectorAll('.td__checkbox');
 
-  const originalData = getData();
+  const originalData = getLocalStorage();
   const filteredData = originalData.filter((_, idx) => !checkArray[idx].checked);
 
-  localStorage.setItem('membersData', JSON.stringify(filteredData));
+  setLocalStorage(filteredData);
 
-  const updatedData = getData();
+  const updatedData = getLocalStorage();
 
   renderTable(updatedData);
 
@@ -161,7 +161,7 @@ function deleteRow() {
 
 // 추가
 function addRow(e) {
-  const originalData = getData();
+  const originalData = getLocalStorage();
   const id = originalData[originalData.length - 1].id + 1;
   const { 
     form,
@@ -180,12 +180,12 @@ function addRow(e) {
     alert('모든 필드를 입력해주세요.');
     e.stopPropagation();
   } else {
-    localStorage.setItem('membersData', JSON.stringify(newData));
+    setLocalStorage(newData);
     form.reset();
     closeModal(e);
   }
 
-  const updatedData = getData();
+  const updatedData = getLocalStorage();
 
   renderTable(updatedData);
 }
@@ -201,7 +201,7 @@ function closeModal(e) {
   }
 }
 
-renderTable(getData());
+renderTable(getLocalStorage());
 applyButton.addEventListener('click', applyFilter);
 resetButton.addEventListener('click', resetFilter);
 checkAll.addEventListener('click', selectAll);

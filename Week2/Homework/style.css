@@ -39,15 +39,15 @@ body:not(h1, h2, h3) {
 
 section {
   width: 80%;
-  padding: 20px;
+  padding: 1.2rem;
   margin: 0 auto;
   border-radius: 8px;
   background-color: #FFFFFF;
 }
 
 button {
-  padding: 5px;
-  border-width: 0px;
+  padding: 0.4em;
+  border-width: 0;
   border-radius: 8px;
   background-color: #8EE5D6;
 }
@@ -59,21 +59,21 @@ button:hover {
 }
 
 .button--short {
-  padding-left: 20px;
-  padding-right: 20px;
+  padding-left: 1.5em;
+  padding-right: 1.5em;
 }
 
 label {
-  min-width: 70px;
+  min-width: 4.2rem;
   font-weight: 500;
 }
 
 input,
 select {
   width: 100%;
-  padding: 8px;
+  padding: 0.6em;
   border-width: 1px;
-  border-radius: 6px;
+  border-radius: 8px;
   border-color: #E3E3E3;
   border-style: solid;
 }
@@ -95,7 +95,7 @@ span {
 
 header {
   display: flex;
-  padding: 30px;
+  padding: 1.8rem;
   background-color: #8EE5D6;
 }
 
@@ -114,8 +114,8 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 20px;
-  padding: 20px;
+  gap: 1.3rem;
+  padding: 1.3rem;
 }
 
 /* 검색 필터 */
@@ -123,7 +123,7 @@ main {
 .search-section {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 1.3rem;
 }
 
 .search-section__form {
@@ -135,7 +135,7 @@ main {
     "code-review-group code-review-group code-review-group age age age"
     "apply-button apply-button apply-button reset-button reset-button reset-button";
   grid-template-columns: repeat(6, 1fr);
-  grid-gap: 20px;
+  grid-gap: 1.3rem;
 }
 
 @media (max-width: 700px) {
@@ -151,7 +151,7 @@ main {
       "age age"
       "apply-button reset-button";
     grid-template-columns: repeat(2, 1fr);
-    grid-gap: 20px;
+    grid-gap: 1.3rem;
   }
 }
 
@@ -201,7 +201,7 @@ main {
 .result-section {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 1.3rem;
 }
 
 .result-section__header {
@@ -212,7 +212,7 @@ main {
 
 .result-section__header .button-wrapper {
   display: flex;
-  gap: 10px;
+  gap: 0.6rem;
 }
 
 .result-section__div {
@@ -258,7 +258,7 @@ main {
 
 .result-section__table tr {
   text-align: center;
-  height: 50px;
+  height: 3.2rem;
 }
 
 .result-section__table th,
@@ -284,7 +284,7 @@ main {
   left: 50%;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 1.3rem;
   min-width: 400px;
   width: 30%;
   transform: translateX(-50%) translateY(-50%);
@@ -315,7 +315,7 @@ main {
     "code-review-group code-review-group age age"
     ". . . add-button";
   grid-template-columns: repeat(4, 1fr);
-  grid-gap: 20px;
+  grid-gap: 1.3rem;
 }
 
 @media (max-width: 600px) {
@@ -331,14 +331,14 @@ main {
       "age"
       "add-button";
     grid-template-columns: repeat(1, 1fr);
-    grid-gap: 20px;
+    grid-gap: 1.3rem;
   }
 }
 
 .modal-section__form .row {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 0.6rem;
 }
 
 .modal-section__form .add-button {

@@ -85,7 +85,7 @@ function renderTable(data) {
 // 필터링
 function filteredByField(data, field, value) {
   if (field === 'gender') {
-    return data.filter((member) => `${value}` === '' ? true: fromEnglishToKorean(member[`${field}`]) === `${value}`);
+    return data.filter((member) => `${value}` === '' ? true: member[`${field}`] === `${value}`);
   } else if (field === 'codeReviewGroup' || field === 'age') {
     return data.filter((member) => value === 0 ? true: member[`${field}`] === value);
   } else {

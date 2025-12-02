@@ -66,7 +66,7 @@ function renderTable(data) {
           <td>${member.name}</td>
           <td>${member.englishName}</td>
           <td>
-            <a href="https://github.com/${member.github}" target="_blank">
+            <a href="https://github.com/${member.github}" target="_blank" rel="noopener noreferrer">
               <span>${member.github}</span>
             </a>
           </td>

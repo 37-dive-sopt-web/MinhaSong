@@ -145,18 +145,15 @@ function selectOne(e) {
 
 // 삭제
 function deleteRow() {
-  const checkArray = document.querySelectorAll('.td__checkbox');
+  const checked = document.querySelectorAll('.td__checkbox:checked');
+  const idsToDelete = new Set([...checked].map((b) => Number(b.value)));
 
-  const originalData = getLocalStorage();
-  const filteredData = originalData.filter((_, idx) => !checkArray[idx].checked);
+  const original = JSON.parse(localStorage.getItem('membersData')) || [];
+  const filtered = original.filter((m) => !idsToDelete.has(m.id));
 
-  setLocalStorage(filteredData);
-
-  const updatedData = getLocalStorage();
-
-  renderTable(updatedData);
-
-  checkAll.checked && (checkAll.checked = !checkAll.checked);
+  localStorage.setItem('membersData', JSON.stringify(filtered));
+  renderTable(filtered);
+  checkAll.checked = false;
 }
 
 // 추가

@@ -21,6 +21,29 @@ function fromEnglishToKorean(english) {
   return english === 'female' ? '여자' : '남자';
 }
 
+function getFormData(formSelector) {
+  const form = document.querySelector(formSelector);
+  const formData = new FormData(form);
+  const name = formData.get('user-name');
+  const englishName = formData.get('user-english-name');
+  const github = formData.get('user-github');
+  const gender = formData.get('user-gender') ?? '';
+  const role = formData.get('user-role') ?? '';
+  const codeReviewGroup = Number(formData.get('user-code-review-group'));
+  const age = Number(formData.get('user-age'));
+
+  return {
+    form,
+    name,
+    englishName,
+    github,
+    gender,
+    role,
+    codeReviewGroup,
+    age
+  }
+}
+
 // 테이블 렌더링
 function renderTable(data) {
   const resultSection = document.querySelector('.result-section');
@@ -72,22 +95,15 @@ function filteredByField(data, field, value) {
 
 function applyFilter() {
   const originalData = getData();
-  // const name = document.querySelector('.search-section__form #name').value;
-  // const englishName = document.querySelector('.search-section__form #english_name').value;
-  // const github = document.querySelector('.search-section__form #github').value;
-  // const gender = document.querySelector('.search-section__form #gender').value;
-  // const role = document.querySelector('.search-section__form #role').value;
-  // const codeReviewGroup = Number(document.querySelector('.search-section__form #code_review_group').value);
-  // const age = Number(document.querySelector('.search-section__form #age').value);
-  const name = document.querySelector('.search-name').value;
-  const englishName = document.querySelector('.search-english-name').value;
-  const github = document.querySelector('.search-github').value;
-  const gender = document.querySelector('.search-gender').value;
-  const role = document.querySelector('.search-role').value;
-  const codeReviewGroup = Number(document.querySelector('.search-code-review-group').value);
-  const age = Number(document.querySelector('.search-age').value);
-
-  console.log(name);
+  const { 
+    name,
+    englishName,
+    github,
+    gender,
+    role,
+    codeReviewGroup,
+    age
+  } = getFormData('.search-section__form');
 
   const filteredData = originalData.filter((member) =>
     filteredByField(originalData, 'name', name).includes(member)
@@ -146,15 +162,17 @@ function deleteRow() {
 // 추가
 function addRow(e) {
   const originalData = getData();
-  const form = document.querySelector('.modal-section__form');
   const id = originalData[originalData.length - 1].id + 1;
-  const name = document.querySelector('.modal-name').value;
-  const englishName = document.querySelector('.modal-english-name').value;
-  const github = document.querySelector('.modal-github').value;
-  const gender = document.querySelector('.modal-gender').value;
-  const role = document.querySelector('.modal-role').value;
-  const codeReviewGroup = Number(document.querySelector('.modal-code-review-group').value);
-  const age = Number(document.querySelector('.modal-age').value);
+  const { 
+    form,
+    name,
+    englishName,
+    github,
+    gender,
+    role,
+    codeReviewGroup,
+    age
+  } = getFormData('.modal-section__form');
 
   const newData = [ ...originalData, {id, name, englishName, github, gender, role, codeReviewGroup, age}];
 

@@ -1,0 +1,351 @@
+/* 공통 스타일 */
+@font-face {
+  font-family: 'Asta Sans';
+  src: url('./public/fonts/AstaSans-Regular.woff2') format('woff2');
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Asta Sans';
+  src: url('./public/fonts/AstaSans-SemiBold.woff2') format('woff2');
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Asta Sans';
+  src: url('./public/fonts/AstaSans-Bold.woff2') format('woff2');
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+}
+
+* {
+  font-family: "Asta Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+body {
+  background-color: var(--gray-100);
+}
+
+body:not(h1, h2, h3) {
+  font-size: 0.875rem;
+}
+
+section {
+  width: 80%;
+  padding: 1.2rem;
+  margin: 0 auto;
+  border-radius: 8px;
+  background-color: var(--white);
+}
+
+button {
+  padding: 0.4em;
+  border-width: 0;
+  border-radius: 8px;
+  background-color: var(--primary-400);
+}
+
+button:hover {
+  background-color: var(--primary-500);
+  transition-duration: 0.2s;
+  transition-timing-function: ease-in-out;
+}
+
+.button--short {
+  padding-left: 1.5em;
+  padding-right: 1.5em;
+}
+
+label {
+  min-width: 4.2rem;
+  font-weight: 500;
+}
+
+input,
+select {
+  width: 100%;
+  padding: 0.6em;
+  border-width: 1px;
+  border-radius: 8px;
+  border-color: var(--gray-200);
+  border-style: solid;
+}
+
+input:focus,
+select:focus {
+  outline: none;
+}
+
+table {
+  border-spacing: 0;
+}
+
+span {
+  color: var(--primary-500);
+}
+
+/* 헤더 */
+
+header {
+  display: flex;
+  padding: 1.8rem;
+  background-color: var(--primary-400);
+}
+
+header > * {
+  flex: 1;
+  text-align: center;
+}
+
+header span:nth-of-type(2) {
+  display: flex;
+  align-items: center;
+  color: var(--black);
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.3rem;
+  padding: 1.3rem;
+}
+
+/* 검색 필터 */
+
+.search-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1.3rem;
+}
+
+.search-section__form {
+  display: grid;
+  grid-template-areas:
+    "name name name name name name"
+    "english-name english-name english-name english-name english-name english-name"
+    "github github gender gender role role"
+    "code-review-group code-review-group code-review-group age age age"
+    "apply-button apply-button apply-button reset-button reset-button reset-button";
+  grid-template-columns: repeat(6, 1fr);
+  grid-gap: 1.3rem;
+}
+
+@media (max-width: 700px) {
+  .search-section__form {
+    display: grid;
+    grid-template-areas:
+      "name name"
+      "english-name english-name"
+      "github github"
+      "gender gender"
+      "role role"
+      "code-review-group code-review-group"
+      "age age"
+      "apply-button reset-button";
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 1.3rem;
+  }
+}
+
+.search-section__form .row {
+  display: flex;
+  align-items: center;  
+}
+
+.row:nth-child(1) {
+  grid-area: name;
+}
+
+.row:nth-child(2) {
+  grid-area: english-name;
+}
+
+.row:nth-child(3) {
+  grid-area: github;
+}
+
+.row:nth-child(4) {
+  grid-area: gender;
+}
+
+.row:nth-child(5) {
+  grid-area: role;
+}
+
+.row:nth-child(6) {
+  grid-area: code-review-group;
+}
+
+.row:nth-child(7) {
+  grid-area: age;
+}
+
+.apply-button {
+  grid-area: apply-button;
+}
+
+.reset-button {
+  grid-area: reset-button;
+}
+
+/* 37기 웹 파트 목록 */
+
+.result-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1.3rem;
+}
+
+.result-section__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.result-section__header .button-wrapper {
+  display: flex;
+  gap: 0.6rem;
+}
+
+.result-section__div {
+  overflow-x: auto;
+}
+
+.result-section__table {
+  width: 100%;
+  min-width: 600px;
+}
+
+.result-section__table col.checkbox {
+  width: 6%;
+}
+
+.result-section__table col.name,
+.result-section__table col.code-review-group {
+  width: 10%;
+}
+
+.result-section__table col.github,
+.result-section__table col.english-name {
+  width: 20%;
+}
+
+.result-section__table col.gender,
+.result-section__table col.role,
+.result-section__table col.age {
+  width: 8%;
+}
+
+.result-section__table thead {
+  background-color: var(--primary-300);
+}
+
+.row--selected {
+  background-color: var(--primary-200);
+}
+
+.result-section__table tbody .row:hover {
+  background-color: var(--primary-200);
+}
+
+.result-section__table tr {
+  text-align: center;
+  height: 3.2rem;
+}
+
+.result-section__table th,
+.result-section__table td {
+  border-bottom-width: 2px;
+  border-bottom-color: var(--gray-200);
+  border-bottom-style: solid;
+}
+
+/* 모달 */
+
+.modal-section--overlay {
+  display: none;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(87, 87, 87, 0.4);
+}
+
+.modal-section--overlay.active {
+  display: block;
+  position: fixed;
+}
+
+.modal-section {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.3rem;
+  min-width: 400px;
+  width: 30%;
+  transform: translateX(-50%) translateY(-50%);
+}
+
+.modal-section__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal-section__header .close-button,
+.modal-section__header .close-button:hover {
+  background-color: transparent;
+}
+
+.modal-section__header .close-button img {
+  width: 20px;
+}
+
+.modal-section__form {
+  display: grid;
+  grid-template-areas: 
+    "name name name name"
+    "english-name english-name english-name english-name"
+    "github github github github"
+    "gender gender role role"
+    "code-review-group code-review-group age age"
+    ". . . add-button";
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 1.3rem;
+}
+
+@media (max-width: 600px) {
+  .modal-section__form {
+    display: grid;
+    grid-template-areas: 
+      "name"
+      "english-name"
+      "github"
+      "gender"
+      "role"
+      "code-review-group"
+      "age"
+      "add-button";
+    grid-template-columns: repeat(1, 1fr);
+    grid-gap: 1.3rem;
+  }
+}
+
+.modal-section__form .row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.modal-section__form .add-button {
+  grid-area: add-button;
+}

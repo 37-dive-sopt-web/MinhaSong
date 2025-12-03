@@ -87,8 +87,8 @@ export const GameStat = styled(GameStatusDiv)`
   padding: ${({ theme }) => theme.spacing.sm};
   min-width: 7rem;
 
-  &:nth-child(2),
-  &:nth-child(3) {
+  &:nth-of-type(2),
+  &:nth-of-type(3) {
     min-width: 5rem;
   }
 `;

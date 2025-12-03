@@ -22,8 +22,7 @@ export function useDeck(level) {
   };
 
   const closeCard = () => {
-    const timer = setTimeout(() => { setOpenedCard([]); }, 600);
-    return () => clearTimeout(timer);
+    setTimeout(() => { setOpenedCard([]); }, 600);
   };
 
   const matchCard = () => {

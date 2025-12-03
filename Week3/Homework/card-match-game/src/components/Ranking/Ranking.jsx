@@ -43,7 +43,7 @@ export default function Ranking() {
             </thead>
             <tbody>
               {gameHistory.length === 0
-                ? <tr><td colspan="4">기록이 존재하지 않아요.</td></tr>
+                ? <tr><td colSpan={4}>기록이 존재하지 않아요.</td></tr>
                 : gameHistory.map(({ id, level, clearTime, createdAt }, idx) => (
                     <tr key={id}>
                       <td role="cell">{idx + 1}</td>

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { useTimer } from '../../hooks/useTimer.js';
 import { useModal } from '../../hooks/useModal.js';
 import { useDeck } from '../../hooks/useDeck.js';
@@ -9,6 +9,7 @@ import * as G from './Game.styled.js';
 
 export default function Game() {
   const [selectedLevel, setSelectedLevel] = useState({ level: 1, timeLimit: 45000, cols: 4 });
+  const invalidTimerRef = useRef(null);
 
   const timerHook = useTimer(selectedLevel.timeLimit);
   const modalHook = useModal();
@@ -50,10 +51,11 @@ export default function Game() {
     if (checkIsOpened(cardId) || checkIsMatched(cardId)) {
       triggerInvalidShake();
       setCurrentStatus('invalid');
-      const timer = setTimeout(() => {
-        setCurrentStatus('waiting')
-      }, 1000);
-      return () => clearTimeout(timer);
+      
+      if (invalidTimerRef.current) clearTimeout(invalidTimerRef.current);
+      invalidTimerRef.current = setTimeout(() => setCurrentStatus('waiting'), 1000);
+      
+      return;
     }
     openCard(cardId);
   };

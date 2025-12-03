@@ -2,6 +2,9 @@ import styled from '@emotion/styled';
 
 export const Card = styled.div`
   display: inline-grid;
+  width: ${({ level }) => level.level !== 3 ? '7rem' : '5rem'};
+  height: ${({ level }) => level.level !== 3 ? '7rem' : '5rem'};
+  font-size: ${({ theme, level }) => level.level !== 3 ? theme.fonts.xl : theme.fonts.lg};
   cursor: pointer;
   transform: perspective(800px) rotateY(${({ isOpened, isMatched }) => isOpened || isMatched ? '180deg' : '0deg'});
   transform-style: preserve-3d;
@@ -25,9 +28,6 @@ export const CardSide = styled.div`
 `;
 
 export const FrontSide = styled(CardSide)`
-  width: ${({ level }) => level.level !== 3 ? '7rem' : '5rem'};
-  height: ${({ level }) => level.level !== 3 ? '7rem' : '5rem'};
-  font-size: ${({ theme, level }) => level.level !== 3 ? theme.fonts.xl : theme.fonts.lg};
   background-color: ${({ theme }) => theme.colors.card};
 
   span {
@@ -36,9 +36,6 @@ export const FrontSide = styled(CardSide)`
 `;
 
 export const BackSide = styled(CardSide)`
-  width: ${({ level }) => level.level !== 3 ? '7rem' : '5rem'};
-  height: ${({ level }) => level.level !== 3 ? '7rem' : '5rem'};
-  font-size: ${({ theme, level }) => level.level !== 3 ? theme.fonts.xl : theme.fonts.lg};
   background-color: ${({ theme, isMatched }) => isMatched ? theme.colors.matchedCard : theme.colors.white};
   transform: rotateY(180deg);
   transition: background-color 0.2s linear 0.06s;

@@ -97,8 +97,8 @@ export default function Game() {
         <G.GameHistoryWrapper>
           {!didStart
             ? <G.NoHistory>아직 뒤집은 카드가 없어요.</G.NoHistory>
-            : (history.map((record) => (
-                <G.GameHistory>
+            : (history.map((record, idx) => (
+                <G.GameHistory key={idx}>
                   {record.result === '성공'
                     ? <G.MatchedPair>{record.pair.join(', ')}</G.MatchedPair>
                     : <G.MismatchedPair>{record.pair.join(', ')}</G.MismatchedPair>

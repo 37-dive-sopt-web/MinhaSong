@@ -44,6 +44,6 @@ export const BackSide = styled(CardSide)`
   transition: background-color 0.2s linear 0.06s;
 
   span {
-    color: ${({ theme, isMatched }) => isMatched && theme.colors.white}
+    color: ${({ theme, isMatched }) => isMatched ? theme.colors.white : theme.colors.black }
   }
 `;
